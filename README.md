@@ -1,7 +1,7 @@
 # The Mocha Programming Language Specification
 
 ## Introduction
-This is a reference manual for the Mocha programming language.
+This is a reference manual for the mocha programming language.
 
 ## Source file representation
 Mocha source files use the file extension ".mo".
