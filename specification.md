@@ -31,4 +31,4 @@ The end of a logical line is represented by a newline. A statement must not cros
 A physical line is a sequesce of Unicode characters terminated by an end-of-line sequence. Any standard line termination sequence suffices - the Unix form using ASCII linefeed, the Windows form using ASCII sequence return followed by linefeed, or the Macintosh form using the ASCII return character. These forms can be used equally, regardless of platform, but must be used consistently throughout a Mokka program.
 
 ### Comments
-A single-line comment starts with a hash (`#`) character and ends at the end of the physical line. Comments are ignored by the compiler. Multiline comments start with a slash followed by a star (`/*`) and end with a star followed by a slash (`*/`). 
+A single-line comment starts with a hash (`#`) character and ends at the end of the physical line. Comments are ignored by the compiler. Multi-line comments are not supported by the syntax.
