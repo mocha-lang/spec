@@ -1,13 +1,13 @@
-# The Mocha Programming Language Specification
+# The Mokka Programming Language Specification
 
 ## Introduction
-This is a reference manual for the mocha programming language.
+This is a reference manual for the Mokka programming language.
 
 ## Source file representation
-Mocha source files use the file extension ".mo".
+Mokka source files use the file extension ".mo".
 
 ## Source code representation
-Mocha source code is Unicode text encoded in UTF-8. The text is not canonicalized. This document will use the unqualified term "character" to refer to a Unicode code point in the source text.
+Mokka source code is Unicode text encoded in UTF-8. The text is not canonicalized. This document will use the unqualified term "character" to refer to a Unicode code point in the source text.
 
 Every code point is entirely distinct. Upper and lower case letters are treated as different characters.
 
@@ -22,6 +22,6 @@ unicode_digit     = /* any arbitrary Unicode code point clssified as "Number, de
 ```
 
 ## Lexical elements
-These characters or groupings of characters can legally appear in mocha source files.
+These characters or groupings of characters can legally appear in Mokka source files.
 
 // TODO
