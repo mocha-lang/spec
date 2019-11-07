@@ -9,17 +9,50 @@ DEDENT
 NUMBER
 WHITESPACE
 
-OPERATOR_MINUS                  -
-OPERATOR_PLUS                   +
-OPERATOR_STAR                   *
-OPERATOR_PERCENT                %
-OPERATOR_SLASH                  /
+MINUS                           -
+PLUS                            +
+STAR                            *
+PERCENT                         %
+SLASH                           /
+LESS                            <
+GREATER                         >
+CIRCUMFLEX                      ^
+QUESTIONMARK                    ?
+UNDERSCORE                      _
 COLON                           :
 SEMICOLON                       ;
 AMPERSAND                       &
 QUOTE                           '
 DOUBLE_QUOTE                    "
-LEFT_BRACE                      {
-RIGHT_BRACE                     }
-LEFT_BRACKET                    [
-RIGHT_BRACKET                   ]
+VERTBAR                         |
+DOT                             .
+DOUBLECOLON                     ::
+LPAR                            (
+RPAR                            )
+LSBR                            [
+RSBR                            ]
+LBRACE                          {
+RBRACE                          }
+EQUAL                           =
+DOUBLE_EQUAL                    ==
+NOTEQUAL                        !=
+LESSEQUAL                       <=
+GREATEREQUAL                    >=
+TILDE                           ~
+LSHIFT                          <<
+RSHIFT                          >>
+DOUBLESTAR                      **
+STAREQUAL                       *=
+MINUSEQUAL                      -=
+PLUSEQUAL                       +=
+SLASHEQUAL                      /=
+PERCENTEQUAL                    %=
+AMPEREQUAL                      &=
+AT                              @
+POUND                           #
+
+WHILE
+DO
+FOR
+FOREACH
+IN
