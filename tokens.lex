@@ -36,6 +36,8 @@ AT                              '@'
 POUND                           '#'
 EQUAL                           '='
 TILDE                           '~'
+DOUBLE_VERTBAR                  '||'
+DOUBLE_AMPERSAND                '&&'
 DOUBLE_EQUAL                    '=='
 NOTEQUAL                        '!='
 LESSEQUAL                       '<='
@@ -51,8 +53,31 @@ RSHIFT                          '>>'
 DOUBLESTAR                      '**'
 DOUBLECOLON                     '::'
 
+# Below are some reserved keywords
 WHILE
 DO
 FOR
 FOREACH
 IN
+AND
+IF
+ELSE
+NOT
+FN
+BREAK
+XOR
+STRING
+INT
+CHAR
+FLOAT
+DOUBLE
+BOOL
+VOID
+CONTINUE
+BREAK
+CONST
+PASS
+RETURN
+PRINT
+FROM
+USE
