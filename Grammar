@@ -1,0 +1,62 @@
+# Grammar for Mokka
+
+module = { import, newline }, { newline, function, newline };
+
+import = "from", relativemodulename, "import", { functionname | traitname };
+
+function = functionheader, newline, { statement, newline };
+
+functionheader = {functionmodifier}, "fn", functionname, "(", {left}, ")", ":";
+
+statement = [left, "="], right;
+left = {variablemodifier}, variablename, ":", typename;
+right = invocation | variablename;
+
+invocation = functionname, "(", {[reference], variablename}, ")";
+
+relativemodulename = modulename, {".", modulename};
+modulename = {charlower, {charlower}, underscore};
+
+functionmodifier = "dirty";
+variablemodifier = "mut";
+
+functionname = [charlower], {charlower | underscore};
+variablename = [charlower], {charlower | underscore};
+typename = builtintypename | traitname;
+traitname = charupper, {charlower};
+
+builtintypename = "int" | "float";
+
+underscore = "_";
+newline = "\n";
+reference = ["mut"], "&";
+
+flow_statement = break_statement | continue_statement | return_statement | raise_statement | yield_statement;
+break_statement = "break";
+continue_statement = "continue";
+return_statement = "return";
+yield_statement = "yield";
+raise_statement = "raise"
+
+charlower = "a" | "b" | "c" | "d" | "e" | "f" | "g" 
+		  | "h" | "i" | "j" | "k" | "l" | "m" | "n"
+		  | "o" | "p" | "q" | "r" | "s" | "t" | "u"
+		  | "v" | "w" | "x" | "y" | "z" ;
+
+charupper = "A" | "B" | "C" | "D" | "E" | "F" | "G" 
+		  | "H" | "I" | "J" | "K" | "L" | "M" | "N"
+		  | "O" | "P" | "Q" | "R" | "S" | "T" | "U"
+		  | "V" | "W" | "X" | "Y" | "Z" ;
+
+syntax = module;
+
+assignment_operator = "=" | "*=" | "/=" | "%=" | "+=" | "-=" | ">>="
+      | "<<=" | "&=" | "^=" | "|=" ;
+      
+boolean_literal = "false" | "true" ;
+
+hexadecimal_digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7"
+      | "8" | "9" | "a" | "b" | "c" | "d" | "e" | "f" ;
+      
+simple_type_specifier = "char" | "bool" | "short" | "int" | "long" | "signed" | "unsigned"
+      | "float" | "double" | "void" ;
