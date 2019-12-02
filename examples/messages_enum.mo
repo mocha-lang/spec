@@ -14,19 +14,19 @@ function main();
 
 function invert(message: &CounterMessage) -> CounterMessage;
     match message;
-        CounterMessage.Increase(by);
-	    return CounterMessage.Decrease(by)
+        CounterMessage.Increase by;
+	    return CounterMessage.Decrease { by }
 
-	CounterMessage.Decrease(by);
-	    return CounterMessage.Increase(by)
+	CounterMessage.Decrease by;
+	    return CounterMessage.Increase { by }
 
 
 function update(counter: &mutable Counter, message: CounterMessage);
     match message;
-        CounterMessage.Increase(by);
+        CounterMessage.Increase by;
 	    counter.value += by
 
-	CounterMessage.Decrease(by);
+	CounterMessage.Decrease by;
 	    counter.value -= by
 
 
