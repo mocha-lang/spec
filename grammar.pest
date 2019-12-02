@@ -1,2 +1,162 @@
 // Grammar for Mokka
 
+
+
+// MODULE
+
+module = _{
+    (module_item ~ char_newline ~ char_newline)* ~ SOI
+}
+
+module_item = {
+    import | function | structure
+}
+
+
+
+// IMPORT
+
+import = {
+    import_from_part? ~ import_import_part
+}
+
+import_from_part = {
+    kwd_from ~ char_space ~ relative_module ~ char_space
+}
+
+import_import_part = {
+    kwd_import ~ char_space ~
+    (name_function | name_struct) ~
+    (sep_import ~ char_space ~ (name_function | name_struct))*
+}
+
+
+
+// FUNCTION
+
+function = {
+    function_header ~ char_newline ~ function_body
+}
+
+function_header = {
+    modifiers_function ~ kwd_function ~ name_function ~ 
+    // TODO: use statement_left here? Or use for both statement left and
+    // this a common construct? Or two different constructs?
+    open_parameters ~ (statement_left ~ sep_parameters)* ~ close_parameters ~
+    sep_returnvalue ~ name_type ~ sep_shouldindent
+}
+
+function_body = {
+    (statement ~ sep_statements)+
+}
+
+
+
+// STATEMENT
+
+statement = {
+    // TODO
+}
+
+
+
+// DEFINITION OF LOCAL
+
+// TODO
+
+def_local = {
+    def_local_typed | def_local_inferred
+}
+
+def_local_typed = {
+    name_local ~ sep_local_type ~ char_space ~ name_type ~ op_assign_typed
+}
+
+def_local_inferred = {
+    name_local ~ char_space ~ op_assign_inferred
+}
+
+// NAMES
+
+name_local = {
+    charset_lower+ ~ (char_underscore ~ charset_lower+)*
+}
+
+name_module = {
+    charset_lower+ ~ (char_underscore ~ charset_lower+)*
+}
+
+name_function = {
+    charset_lower ~ (charset_lower | charset_upper)*
+}
+
+name_struct = {
+    charset_upper ~ (charset_upper | charset_lower)*
+}
+
+
+
+// MODIFIER
+
+modifiers_variable = { "mutable"? }
+modifiers_function = {}
+
+
+
+// OPERATORS
+
+op_assign_typed = { "=" }
+op_assign_inferred = { ":=" }
+
+
+
+// SEPARATORS
+
+sep_import        = _{ "," }
+sep_parameters    = _{ "," }
+sep_local_type    = _{ ":" }
+sep_statements    = _{ char_newline }
+sep_returnvalue   = _{ "->" }
+sep_shouldindent  = _{ ";" }
+sep_relative_module = _{ "." }
+
+
+// PAIRS
+
+open_parameters  = _{ "(" } 
+close_parameters = _{ ")" } 
+open_structure = _{ "{" }
+close_structure = _{ "}" }
+
+
+
+// KEYWORDS
+
+kwd_from = { "from" }
+kwd_import = { "import" }
+kwd_function = { "function" }
+kwd_for = { "for" }
+kwd_in = { "in" }
+kwd_while = { "while" }
+
+
+
+// CHARACTERSETS
+
+charset_lower = _{ 'a' .. 'z' }
+charset_upper = _{ 'A' .. 'Z' }
+
+
+
+// CHARACTERS
+
+char_space = _{ " " }
+char_newline = _{ "\n" }
+char_comment = _{ "#" }
+char_underscore = _{ "_" }
+
+
+
+// special rules for pest
+
+comment = _{ char_comment ~ (!char_newline ~ ANY)* }
