@@ -35,18 +35,55 @@ import_import_part = {
 // FUNCTION
 
 function = {
-    function_header ~ char_newline ~ function_body
+    function_header ~ char_newline ~ body
 }
 
 function_header = {
-    modifiers_function ~ kwd_function ~ name_function ~ 
-    // TODO: use statement_left here? Or use for both statement left and
-    // this a common construct? Or two different constructs?
-    open_parameters ~ (statement_left ~ sep_parameters)* ~ close_parameters ~
-    sep_returnvalue ~ name_type ~ sep_shouldindent
+    (modifiers_function ~ char_space)? ~ kwd_function ~ char_space ~ name_function ~
+    list_arguments ~
+    (char_space ~ sep_returnvalue ~ char_space ~ name_type)?
+    ~ sep_shouldindent
 }
 
-function_body = {
+
+
+// GENERATOR
+
+generator = {
+    generator_header ~ char_newline ~ body
+}
+
+generator_header = {
+    kwd_generator ~ char_space ~ name_generator ~
+    list_arguments ~
+    (sep_yieldvalue ~ char_space ~ name_type)? ~
+    sep_shouldindent
+}
+
+
+// ARGUMENTS
+
+list_arguments = {
+    open_arguments ~ 
+    (
+	(argument ~ sep_arguments ~ char_space)* ~
+	(argument ~ sep_arguments)
+    )?
+    close_arguments
+}
+
+
+argument = {
+    name_type ~
+    sep_local_type ~
+    char_space ~
+    name_type
+}
+
+
+// BODY
+
+body = {
     (statement ~ sep_statements)+
 }
 
@@ -76,6 +113,28 @@ def_local_inferred = {
     name_local ~ char_space ~ op_assign_inferred
 }
 
+
+
+// PARAMETERS
+
+list_parameters = {
+    open_parameters ~ 
+    (
+	(parameter ~ sep_parameters ~ char_space)* ~
+	(parameter ~ sep_parameters)
+    )?
+    close_parameters
+}
+
+parameter = {
+    name_local ~
+    char_space ~
+    op_assign_inferred ~
+    name_local
+}
+
+
+
 // NAMES
 
 name_local = {
@@ -98,15 +157,22 @@ name_struct = {
 
 // MODIFIER
 
-modifiers_variable = { "mutable"? }
+modifiers_binding = { "mutable"? }
 modifiers_function = {}
 
 
 
 // OPERATORS
 
-op_assign_typed = { "=" }
+op_assign_typed    = { "=" }
 op_assign_inferred = { ":=" }
+
+op_binary_subtract = { "-" }
+op_binary_add      = { "+" }
+op_binary_multiply = { "*" }
+
+op_unary_negate    = { "-" }
+op_unary_reference = { "&" }
 
 
 
@@ -114,30 +180,39 @@ op_assign_inferred = { ":=" }
 
 sep_import        = _{ "," }
 sep_parameters    = _{ "," }
+sep_arguments     = _{ "," }
 sep_local_type    = _{ ":" }
 sep_statements    = _{ char_newline }
 sep_returnvalue   = _{ "->" }
+sep_yieldvalue    = _{ "->" }
 sep_shouldindent  = _{ ";" }
 sep_relative_module = _{ "." }
+
 
 
 // PAIRS
 
 open_parameters  = _{ "(" } 
 close_parameters = _{ ")" } 
-open_structure = _{ "{" }
-close_structure = _{ "}" }
+open_arguments   = _{ "(" }
+close_arguments  = _{ ")" }
+open_structure   = _{ "{" }
+close_structure  = _{ "}" }
 
 
 
 // KEYWORDS
 
-kwd_from = { "from" }
-kwd_import = { "import" }
-kwd_function = { "function" }
-kwd_for = { "for" }
-kwd_in = { "in" }
-kwd_while = { "while" }
+kwd_from      = { "from" }
+kwd_import    = { "import" }
+kwd_function  = { "function" }
+kwd_generator = { "generator" }
+kwd_structure = { "structure" }
+kwd_for       = { "for" }
+kwd_in        = { "in" }
+kwd_while     = { "while" }
+kwd_return    = { "return" }
+kwd_yield     = { "yield" }
 
 
 
@@ -160,3 +235,4 @@ char_underscore = _{ "_" }
 // special rules for pest
 
 comment = _{ char_comment ~ (!char_newline ~ ANY)* }
+
