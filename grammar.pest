@@ -203,17 +203,37 @@ close_structure  = _{ "}" }
 
 // KEYWORDS
 
-kwd_from      = { "from" }
-kwd_import    = { "import" }
+kwd_while 	  = { "while" }
+kwd_do 	      = { "do" }
+kwd_for 	  = { "for" }
+kwd_foreach   = { "foreach" }
+kwd_in 	      = { "in" }
+kwd_and 	  = { "and" }
+kwd_if 	      = { "if" }
+kwd_else 	  = { "else" }
+kwd_not 	  = { "not" }
+kwd_xor 	  = { "xor" }
+kwd_continue  = { "continue" }
+kwd_break 	  = { "break" }
+kwd_const 	  = { "const" }
+kwd_pass 	  = { "pass" }
+kwd_return 	  = { "return" }
+kwd_print  	  = { "print" }
+kwd_from 	  = { "from" }
+kwd_use 	  = { "use" }
+kwd_yield 	  = { "yield" }
+kwd_loop 	  = { "loop" }
+kwd_pure 	  = { "pure" }
+kwd_dirty 	  = { "dirty" }
+kwd_sync 	  = { "sync" }
+kwd_async 	  = { "async" }
+kwd_await 	  = { "await" }
+kwd_import 	  = { "import" }
+kwd_export 	  = { "export" }
 kwd_function  = { "function" }
 kwd_generator = { "generator" }
 kwd_structure = { "structure" }
-kwd_for       = { "for" }
-kwd_in        = { "in" }
-kwd_while     = { "while" }
-kwd_return    = { "return" }
-kwd_yield     = { "yield" }
-
+kwd_mutable   = { "mutable" }
 
 
 // CHARACTERSETS
