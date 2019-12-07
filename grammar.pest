@@ -64,11 +64,11 @@ generator_header = {
 // ARGUMENTS
 
 list_arguments = {
-    open_arguments ~ 
+    open_arguments ~
     (
-	(argument ~ sep_arguments ~ char_space)* ~
+    (argument ~ sep_arguments ~ char_space)* ~
 	(argument ~ sep_arguments)
-    )?
+	)? ~
     close_arguments
 }
 
@@ -122,7 +122,7 @@ list_parameters = {
     (
 	(parameter ~ sep_parameters ~ char_space)* ~
 	(parameter ~ sep_parameters)
-    )?
+    )? ~
     close_parameters
 }
 
