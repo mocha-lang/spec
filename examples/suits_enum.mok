@@ -17,7 +17,7 @@ function main();
 from std.io import write, STDOUT
 
 
-enum CardSuit;
+enumeration CardSuit;
     Clubs
     Diamonds
     Hearts
