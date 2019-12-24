@@ -1,0 +1,17 @@
+# Description: Calculate the first 100 prime numbers
+
+function main();
+    for x in generatePrimes();
+        write(to := STDOUT, x)
+    
+generator generatePrimes() -> int;
+    for number in range(2, 100);
+        mutable is_prime: boolean = true # Assume prime
+    
+        for divisor in range(2, number - 1);
+            if number % divisor == 0;
+                is_prime = false
+            
+        if is_prime;
+            yield number
+                
